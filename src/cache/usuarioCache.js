@@ -1,43 +1,48 @@
 const usuariosLogados = [];
-const {NaoAutorizadoErro} = require('../erros/typesErros');
-
+const { NaoAutorizadoErro } = require('../erros/typesErros');
 
 function adicionarNoCache(credencial){
-    if(!credencial || !credencial.token || !credencial.usuario || !credencial.dataExpiracao){
-        throw new NaoAutorizadoErro(401, 'Usuário ou senha inválidos');
+
+    if(!credencial || 
+       !credencial.usuario || 
+       !credencial.token || 
+       !credencial.dataExpiracao){
+        throw new NaoAutorizadoErro();
     }
+
     usuariosLogados.push(credencial);
 }
 
-function removerDoCache(token){
-    let indice = usuariosLogados.findIndex(credencial => credencial.token === token);
-    if(!isNaA(indice)){
+function removerNoCache(token){
+    let indice = usuariosLogados.findIndex(credencial => credencial.token == token);
+
+    if(!isNaN(indice)){
         usuariosLogados.splice(indice, 1);
     }
 }
 
 function obterCredencial(usuario){
-    let credencial = usuariosLogados.find(credencial => credencial.usuario.id === usuario.id);
+    let credencial = usuariosLogados.find(c => c.usuario.id == usuario.id);
     return credencial;
 }
 
-function obeterCredencialPorToken(token){
-    let credencial = usuariosLogados.find(credencial => credencial.token === token);
+function obterCredencialPorToken(token){
+    let credencial = usuariosLogados.find(c => c.token == token);
     return credencial;
 }
 
 function atualizarDataExpiracao(token, dataExpiracao){
-    let indice = usuariosLogados.findIndex(credencial => credencial.token === token);
-    if(!isNaA(indice)){
+    let indice = usuariosLogados.findIndex(c => c.token == token);
+
+    if(!isNaN(indice)){
         usuariosLogados[indice].dataExpiracao = dataExpiracao;
     }
 }
 
-module.exports = {
+module.exports ={
     adicionarNoCache,
-    removerDoCache,
+    removerNoCache,
     obterCredencial,
-    obeterCredencialPorToken,
+    obterCredencialPorToken,
     atualizarDataExpiracao
-};
-
+}

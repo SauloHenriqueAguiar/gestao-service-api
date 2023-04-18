@@ -21,6 +21,9 @@ async function validarUsuario(email, senha) {
     return credencial;
 }
 
+async function logout(token) {
+    usuarioCache.removerNoCache(token);
+}
 
 function _criarCredencial(usuario) {
     
@@ -45,6 +48,7 @@ function _criarCredencial(usuario) {
     usuarioCache.adicionarNoCache(credencial);
 
     return credencial;
+
 }
 
 
@@ -52,6 +56,7 @@ function _criarCredencial(usuario) {
 
 module.exports = {
     validarUsuario,
+    logout
 
 };
 

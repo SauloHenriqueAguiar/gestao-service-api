@@ -1,7 +1,13 @@
-POST HTTP://localhost:3000/usuarios
+POST HTTP://localhost:3000/login
 Content-Type: application/json
 
 {
   "email" : "saul@gmail.com",
   "senha": "123456"
 }
+
+###
+
+DELETE HTTP://localhost:3000/logout
+
+
