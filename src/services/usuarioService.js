@@ -1,6 +1,9 @@
 const Usuario = require('../models/Usuario');
 const { NaoAutorizadoErro } = require('../erros/typesErros');
 const geradorToken = require('../utils/geradorToken');
+const usuarioCache = require('../cache/usuarioCache');
+
+
 
 async function validarUsuario(email, senha) {
 
@@ -19,6 +22,36 @@ async function validarUsuario(email, senha) {
 }
 
 
+function _criarCredencial(usuario) {
+    
+    let dataExpiracao = geradorToken.gerarDataExpiracao();
 
-module.exports = {validarUsuario};
+    let credencial = usuarioCache.obterCredencial(usuario);
+
+    if(credencial){
+        if(credencial.dataExpiracao < new Date()){
+            usuarioCache.removerNoCache(credencial.token);
+        }else{
+            usuarioCache.atualizarDataExpiracao(credencial.token, dataExpiracao);
+            return credencial;
+        }
+    }
+
+    let token = geradorToken.criarToken(usuario);
+    usuario.senha = undefined;
+
+    credencial = { token, usuario, dataExpiracao };
+    
+    usuarioCache.adicionarNoCache(credencial);
+
+    return credencial;
+}
+
+
+
+
+module.exports = {
+    validarUsuario,
+
+};
 
