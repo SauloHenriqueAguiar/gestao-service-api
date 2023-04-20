@@ -1,8 +1,10 @@
 const Usuario = require('../models/Usuario');
-const { NaoAutorizadoErro } = require('../erros/typesErros');
+const Perfil = require('../models/Perfil');
+const { NaoAutorizadoErro, NaoEncontradoErro } = require('../erros/typesErros');
 const geradorToken = require('../utils/geradorToken');
 const usuarioCache = require('../cache/usuarioCache');
-
+const UsuarioDTO = require('../dtos/UsuarioDTO');
+const PerfilDTO = require('../dtos/PerfilDTO');
 
 
 async function validarUsuario(email, senha) {
@@ -25,16 +27,48 @@ async function logout(token) {
     usuarioCache.removerNoCache(token);
 }
 
+async function obterPorId(id) {
+    let usuario = await Usuario.findByPk(id);
+
+    if (!usuario) {
+        throw new NaoEncontradoErro(404, "Não foi possivel encontrar o Usuário por id");
+    }
+
+    usuario.senha = undefined;
+    let usuarioDTO = new UsuarioDTO(usuario);
+    let perfil = await Perfil.findByPk(usuario.idPerfil);
+
+    usuarioDTO.perfil = new PerfilDTO(perfil);
+
+    return usuario;
+
+}
+
+async function validarAutenticacao(token) {
+    let credencial = usuarioCache.obterCredencialPorToken(token);
+
+    if (!credencial || credencial.dataExpiracao < new Date()) {
+       
+        if(credencial) {
+            usuarioCache.removerNoCache(credencial.token);
+        }
+        return false;
+    }
+
+    return true;
+}
+
+
 function _criarCredencial(usuario) {
-    
+
     let dataExpiracao = geradorToken.gerarDataExpiracao();
 
     let credencial = usuarioCache.obterCredencial(usuario);
 
-    if(credencial){
-        if(credencial.dataExpiracao < new Date()){
+    if (credencial) {
+        if (credencial.dataExpiracao < new Date()) {
             usuarioCache.removerNoCache(credencial.token);
-        }else{
+        } else {
             usuarioCache.atualizarDataExpiracao(credencial.token, dataExpiracao);
             return credencial;
         }
@@ -44,7 +78,7 @@ function _criarCredencial(usuario) {
     usuario.senha = undefined;
 
     credencial = { token, usuario, dataExpiracao };
-    
+
     usuarioCache.adicionarNoCache(credencial);
 
     return credencial;
@@ -56,7 +90,9 @@ function _criarCredencial(usuario) {
 
 module.exports = {
     validarUsuario,
-    logout
+    logout,
+    obterPorId,
+    validarAutenticacao
 
 };
 

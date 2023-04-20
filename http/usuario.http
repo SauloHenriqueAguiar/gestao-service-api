@@ -9,5 +9,12 @@ Content-Type: application/json
 ###
 
 DELETE HTTP://localhost:3000/logout
+Authorization: 561eaf9637592367a7a97d95b79d6c5f
+
+###
+
+GET HTTP://localhost:3000/usuarios/1
+Authorization: cb5cf06269263cd2b36d201396bfc67f
+
 
 
