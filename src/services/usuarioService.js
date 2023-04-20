@@ -1,6 +1,6 @@
 const Usuario = require('../models/Usuario');
 const Perfil = require('../models/Perfil');
-const { NaoAutorizadoErro, NaoEncontradoErro } = require('../erros/typesErros');
+const { NaoAutorizadoErro, NaoEncontratoErro, AplicacaoErro } = require('../erros/typesErros');
 const geradorToken = require('../utils/geradorToken');
 const usuarioCache = require('../cache/usuarioCache');
 const UsuarioDTO = require('../dtos/UsuarioDTO');
@@ -58,6 +58,42 @@ async function validarAutenticacao(token) {
     return true;
 }
 
+async function cadastrar(usuarioDTO) {
+    usuarioDTO.senha = geradorToken.gerarHashdaSenha(usuarioDTO.senha);
+
+    let usuario = await Usuario.create(usuarioDTO);
+
+    if(!usuario){
+        throw new AplicacaoErro(500, 'Falha ao cadastrar o usuario');
+    }
+
+    let dto = new UsuarioDTO(usuario);
+    dto.senha = undefined;
+    dto.perfil = new PerfilDTO(await Perfil.findByPk(dto.idPerfil));
+
+    return dto;
+}
+
+async function atualizar(usuarioDTO){
+
+    let usuario = await Usuario.findByPk(usuarioDTO.id);
+
+    if(!usuario){
+        throw new NaoEncontratoErro(404, "Não foi possível encontrar o usuario pelo id "+ id);
+    }
+    usuarioDTO.senha = usuario.senha;
+
+    usuario = await Usuario.update(usuarioDTO, 
+        { where: { id: usuarioDTO.id }}
+    );
+
+    if(!usuario || !usuario[0]){
+        throw new AplicacaoErro(500, 'Falha ao atualizar o usuario com id' + usuarioDTO.id);
+    }
+
+    usuarioDTO.senha = undefined;
+    return usuarioDTO;
+}
 
 function _criarCredencial(usuario) {
 
@@ -92,7 +128,9 @@ module.exports = {
     validarUsuario,
     logout,
     obterPorId,
-    validarAutenticacao
+    validarAutenticacao,
+    cadastrar,
+    atualizar
 
 };
 

@@ -2,7 +2,7 @@ POST HTTP://localhost:3000/login
 Content-Type: application/json
 
 {
-  "email" : "saul@gmail.com",
+  "email" : "rr10@gmail.com",
   "senha": "123456"
 }
 
@@ -14,7 +14,33 @@ Authorization: 561eaf9637592367a7a97d95b79d6c5f
 ###
 
 GET HTTP://localhost:3000/usuarios/1
-Authorization: cb5cf06269263cd2b36d201396bfc67f
+Authorization: 79eaaa93e982d97b23ffa11eae02199c
 
+###
 
+POST HTTP://localhost:3000/usuarios
+Content-Type: application/json
+Authorization: 08e22cb41954f4cd4387b02582457c79
 
+{
+  "nome": "Mariasd",
+  "email": "Mariagg@gmail.com",
+  "senha": "123456",
+  "idPerfil": 2
+}
+
+###
+
+PUT HTTP://localhost:3000/usuarios/1
+Content-Type: application/json
+Authorization: fc389d436920f8dc0fe3604f5571dd20
+
+{
+ 
+  "nome": "Ronaldinho Gaucho",
+  "email": "rr10@gmail.com",
+  "idPerfil": "2",
+  "dataInativacao": null,
+  "criadoEm": "2023-04-18T18:30:42.231Z",
+  "atualizadoEm": null
+}
