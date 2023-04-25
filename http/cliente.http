@@ -1,0 +1,83 @@
+POST HTTP://localhost:3000/clientes
+Content-Type: application/json
+Authorization: 4ec087584c8cfdd6358d1b89024fdaa4
+
+{
+    "nome":"Julius Rock",
+    "email":"julius@gmail.com",
+    "cpfOuCnpj":"1234563178912",
+    "telefone": "21982531316395",
+    "enderecos": [
+        {
+            "cep":"25970563",
+            "rua": "rua ceres A",
+            "numero": "53",
+            "complemento": "Casa 2 - Fundos",
+            "bairro": "broklin",
+            "cidade":"new york",
+            "uf": "NY"
+        },
+        {
+            "cep":"28000000",
+            "rua": "Rua XYZ",
+            "numero": "852",
+            "complemento": "APT 405 - Bloco C",
+            "bairro": "Sun down",
+            "cidade":"new jersey",
+            "uf": "NJ"
+        }
+    ]
+}
+
+###
+
+
+GET HTTP://localhost:3000/clientes/4
+Authorization: 2efb4b3c4c54cb7b88c05177ae89c152
+
+###
+GET HTTP://localhost:3000/clientes
+Authorization: dd302e0bc53399d02606a72363e45ff4
+
+###
+
+PUT HTTP://localhost:3000/clientes/4
+Content-Type: application/json
+Authorization: 2efb4b3c4c54cb7b88c05177ae89c152
+
+{
+ "nome": "Julius Rock pai de cris",
+  "email": "juliusrock@gmail.com",
+  "cpfOuCnpj": "1234563178912",
+  "telefone": "21982531316395",
+  "enderecos": [
+    {
+      "id": "3",
+      "idCliente": "4",
+      "cep": "25970563",
+      "rua": "rua ceres A",
+      "complemento": "Casa 2 - Fundos",
+      "numero": "53",
+      "bairro": "broklin",
+      "cidade": "new york",
+      "uf": "NY",
+      "criadoEm": "2023-04-25T21:51:36.507Z",
+      "atualizadoEm": "2023-04-25T21:51:36.507Z"
+    },
+    {
+      "id": "4",
+      "idCliente": "4",
+      "cep": "28000000",
+      "rua": "Rua XYZ",
+      "complemento": "APT 405 - Bloco C",
+      "numero": "852",
+      "bairro": "Sun down",
+      "cidade": "new jersey",
+      "uf": "NJ",
+      "criadoEm": "2023-04-25T21:51:36.511Z",
+      "atualizadoEm": "2023-04-25T21:51:36.511Z"
+    }
+  ],
+  "criadoEm": "2023-04-25T21:51:36.494Z",
+  "atualizadoEm": "2023-04-25T21:51:36.494Z"
+}

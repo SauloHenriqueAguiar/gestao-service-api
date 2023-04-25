@@ -1,5 +1,5 @@
 const clienteService = require('../services/clienteService');
-const { NaoAutorizadoErro, ModeloInvalidoErro } = require('../erros/typeErros');
+const { NaoAutorizadoErro, ModeloInvalidoErro } = require('../erros/typesErros');
 const ClienteDTO = require('../dtos/ClienteDTO');
 
 class ClienteController {

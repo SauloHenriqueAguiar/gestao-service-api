@@ -1,8 +1,8 @@
 const Cliente = require('../models/Cliente');
-const Endereco = require('../models/Endereco');
+const Endereco = require('../models/Enderecos');
 const ClienteDTO = require('../dtos/ClienteDTO');
 const EnderecoDTO = require('../dtos/EnderecoDTO');
-const { NaoAutorizadoErro, NaoEncontratoErro, AplicacaoErro } = require('../erros/typeErros');
+const { NaoAutorizadoErro, NaoEncontratoErro, AplicacaoErro } = require('../erros/typesErros');
 
 
 async function obterPorId(id){

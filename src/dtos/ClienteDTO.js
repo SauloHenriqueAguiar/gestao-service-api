@@ -1,4 +1,4 @@
-const { ModeloInvalidoErro } = require('../erros/typeErros');
+const { ModeloInvalidoErro } = require('../erros/typesErros');
 const EnderecoDTO = require('./EnderecoDTO');
 
 module.exports = class ClienteDTO {
