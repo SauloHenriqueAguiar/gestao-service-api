@@ -6,6 +6,10 @@ const UsuarioController = require('./src/controllers/UsuarioController');
 const usuarioController = new UsuarioController();
 const ClienteController = require('./src/controllers/ClienteController');
 const clienteController = new ClienteController();
+const ServicoController = require('./src/controllers/ServicoController');
+const servicoController = new ServicoController();
+const PrestadorController = require('./src/controllers/PrestadorController');
+const prestadorController = new PrestadorController();
 
 
 routes.use(async (req, res, next) => {
@@ -34,5 +38,16 @@ routes.get("/clientes/:id", clienteController.obterPorId);
 routes.post("/clientes", clienteController.cadastrar);
 routes.put("/clientes/:id", clienteController.atualizar);
 
+//rotas de servicos
+routes.get("/servicos", servicoController.obterTodos);
+routes.get("/servicos/:id", servicoController.obterPorId);
+routes.post("/servicos", servicoController.cadastrar);
+routes.put("/servicos/:id", servicoController.atualizar);
+
+// rotas de prestador
+routes.get("/prestadores/:id", prestadorController.obterPorId);
+routes.get("/prestadores", prestadorController.obterTodos);
+routes.post("/prestadores", prestadorController.cadastrar); 
+routes.put("/prestadores/:id", prestadorController.atualizar);
 
 module.exports = routes;
