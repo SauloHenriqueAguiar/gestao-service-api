@@ -10,6 +10,8 @@ const ServicoController = require('./src/controllers/ServicoController');
 const servicoController = new ServicoController();
 const PrestadorController = require('./src/controllers/PrestadorController');
 const prestadorController = new PrestadorController();
+const OrcamentoController = require('./src/controllers/OrcamentoController');
+const orcamentoController = new OrcamentoController();
 
 
 routes.use(async (req, res, next) => {
@@ -49,5 +51,12 @@ routes.get("/prestadores/:id", prestadorController.obterPorId);
 routes.get("/prestadores", prestadorController.obterTodos);
 routes.post("/prestadores", prestadorController.cadastrar); 
 routes.put("/prestadores/:id", prestadorController.atualizar);
+
+
+// Rotas de orcamento 
+routes.post('/orcamentos', orcamentoController.cadastrar);
+routes.get('/orcamentos', orcamentoController.obterTodos);
+routes.get('/orcamentos/:id', orcamentoController.obterPorId);
+routes.put('/orcamentos/:id', orcamentoController.atualizar);
 
 module.exports = routes;
