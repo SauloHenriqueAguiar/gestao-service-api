@@ -3,23 +3,23 @@ Content-Type: application/json
 Authorization: 0b9f896e4d8ad519df25e64876c51554
 
 {
-  "id": "15",
+  "id": "6",
   "descricao": "Orcamento Teste B",
   "cliente": {
     "id": "1",
-    "nome": "Ciclano de Tal",
+    "nome": "Jose da Silva",
     "cpfOuCnpj": "12345678912",
     "telefone": "21982536395",
     "enderecos": []
   },
   "itens": [
     {
-      "id": "12",
+      "id": "9",
       "servico": {
         "id": "1",
         "descricao": "Pintura Interior m2",
         "observacao": null,
-        "valor": 100
+        "valor": 1000
       },
       "prestador": {
         "id": "3",
@@ -28,14 +28,14 @@ Authorization: 0b9f896e4d8ad519df25e64876c51554
         "cpfOuCnpj": null,
         "telefone": null,
         "observacao": null,
-        "criadoEm": "2021-12-10T08:51:00.962Z"
+        "criadoEm": "2023-05-06T08:51:00.962Z"
       },
       "desconto": 0,
       "acrescimo": 100,
       "valor": 7500,
       "valorTotal": 7600,
       "observacao": null,
-      "criadoEm": "2021-12-10T08:39:49.234Z"
+      "criadoEm": "2023-05-06T08:51:00.962Z"
     },
     {
       "id": "3",
@@ -43,7 +43,7 @@ Authorization: 0b9f896e4d8ad519df25e64876c51554
         "id": "1",
         "descricao": "Pintura Interior m2",
         "observacao": null,
-        "valor": 100
+        "valor": 1000
       },
       "prestador": {
         "id": "2",
@@ -52,21 +52,21 @@ Authorization: 0b9f896e4d8ad519df25e64876c51554
         "cpfOuCnpj": null,
         "telefone": null,
         "observacao": null,
-        "criadoEm": "2021-12-10T08:51:00.962Z"
+        "criadoEm": "2023-05-06T08:51:00.962Z"
       },
       "desconto": 100,
       "acrescimo": 2000,
       "valor": 2000,
       "valorTotal": 3900,
       "observacao": null,
-      "criadoEm": "2021-12-10T08:39:15.021Z"
+      "criadoEm": "2023-05-06T08:51:00.962Z"
     }
   ],
   "desconto": 0,
   "acrescimo": 0,
   "valorTotal": 0,
-  "criadoEm": "2021-12-08T22:57:03.007Z",
-  "atualizadoEm": "2021-12-08T22:57:03.007Z"
+  "criadoEm": "2023-05-06T08:51:00.962Z",
+  "atualizadoEm": "2023-05-06T08:51:00.962Z"
 }
 
 ###
@@ -102,14 +102,14 @@ Authorization: 20f4ee9491b189de8b737d46c34ae8cb
         "cpfOuCnpj": null,
         "telefone": null,
         "observacao": null,
-        "criadoEm": "2021-12-10T08:51:00.962Z"
+        "criadoEm": "2023-05-06T08:51:00.962Z"
       },
       "desconto": 100,
       "acrescimo": 2000,
       "valor": 2000,
       "valorTotal": 3900,
       "observacao": null,
-      "criadoEm": "2021-12-10T08:39:15.021Z"
+      "criadoEm": "2023-05-06T08:51:00.962Z"
     },
     {
       "id": "12",
@@ -126,19 +126,19 @@ Authorization: 20f4ee9491b189de8b737d46c34ae8cb
         "cpfOuCnpj": null,
         "telefone": null,
         "observacao": null,
-        "criadoEm": "2021-12-10T08:51:00.962Z"
+        "criadoEm": "2023-05-06T08:51:00.962Z"
       },
       "desconto": 0,
       "acrescimo": 100,
       "valor": 7500,
       "valorTotal": 7600,
       "observacao": null,
-      "criadoEm": "2021-12-10T08:39:49.234Z"
+      "criadoEm": "2023-05-06T08:51:00.962Z"
     }
   ],
   "desconto": 0,
   "acrescimo": 0,
   "valorTotal": 0,
-  "criadoEm": "2021-12-08T22:57:03.007Z",
-  "atualizadoEm": "2021-12-08T22:57:03.007Z"
+  "criadoEm": "2023-05-06T08:51:00.962Z",
+  "atualizadoEm": "2023-05-06T08:51:00.962Z"
 }
