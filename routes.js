@@ -15,12 +15,20 @@ const orcamentoController = new OrcamentoController();
 
 
 routes.use(async (req, res, next) => {
+   
     const { authorization } = req.headers;
     let autenticado = await usuarioService.validarAutenticacao(authorization);
-    if (!autenticado && req.originalUrl != "/login") {
-        return res.status(401).json({ status: 401 ,message: "Usuario nao autenticado" ,name: "NaoAutorizado"});
+    
+    if(!autenticado && req.originalUrl !== '/login' && process.env.AUTENTICACAO != 'FALSE'){
+        return res.status(401).json({
+            status: 401,
+            message:'Usuário não autenticado',
+            name: 'NaoAutorizado'
+        });
     }
+
     next();
+ 
 });
 
 
