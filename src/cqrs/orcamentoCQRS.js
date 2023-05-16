@@ -62,7 +62,7 @@ LEFT JOIN public.prestadores PR ON (OI."idPrestador" = PR.id)
 `;
 
 /**
- * Método que retorna uma lista com a capa dos orcamentos.
+ * Método que retorna uma lista com o topo dos orcamentos.
  * Aqui não retorna os itens.
  * @returns OrcamentoDTO, somente a capa.
 */

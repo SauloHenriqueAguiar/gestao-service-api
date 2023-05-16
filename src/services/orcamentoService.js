@@ -6,6 +6,13 @@ const orcamentoCQRS = require('../cqrs/orcamentoCQRS');
 const connection = require('../database/index');
 
 const { NaoEncontratoErro, AplicacaoErro } = require('../erros/typeErros');
+
+/**
+ * Metodo obtem id do orcamento
+ * @param {Number} id 
+ * @returns {id}
+ */
+
 async function obterPorId(id){
     let orcamento = await Orcamento.findByPk(id);
 
@@ -16,11 +23,20 @@ async function obterPorId(id){
     return await orcamentoCQRS.obterOrcamento(id);
 }
 
+/**
+ * metodo obtem todos os orcamentos
+ * @returns 
+ */
 
 async function obterTodos(){
     return await orcamentoCQRS.obterOrcamentos();
 }
 
+/**
+ * metodo cadastra um orcamento
+ * @param {*} orcamentoDTO 
+ * @returns item cadastrado
+ */
 async function cadastrar(orcamentoDTO){
     
     let transaction = await connection.transaction();
@@ -63,6 +79,11 @@ async function cadastrar(orcamentoDTO){
     return {};
 }
 
+/**
+ * metodo atualiza um orcamento
+ * @param {*} orcamentoDTO 
+ * @returns item atualizado
+ */
 async function atualizar(orcamentoDTO){
     let transaction = await connection.transaction();
 
@@ -87,7 +108,12 @@ async function atualizar(orcamentoDTO){
         throw new AplicacaoErro(500, 'Não foi possível atualizar o orcamento, motivo: '+ error);
     }
 }
-
+/**
+ * metodo adiciona itens ao orcamento
+ * @param {*} orcamentoDTO 
+ * @param {*} orcamentoBanco 
+ * @param {*} transaction 
+ */
 async function _adicionarItens(orcamentoDTO, orcamentoBanco, transaction){
     let itensAdicionados = [];
 
@@ -109,7 +135,12 @@ async function _adicionarItens(orcamentoDTO, orcamentoBanco, transaction){
         });
     }
 }
-
+/**
+ * metodo atualiza itens do orcamento
+ * @param {*} orcamentoDTO 
+ * @param {*} orcamentoBanco 
+ * @param {*} transaction 
+ */
 async function _atualizarItens(orcamentoDTO, orcamentoBanco, transaction){
 
     let itensParaAtualizar = [];
@@ -130,6 +161,12 @@ async function _atualizarItens(orcamentoDTO, orcamentoBanco, transaction){
     }
 }
 
+/**
+ * metodo deleta itens do orcamento
+ * @param {*} orcamentoDTO 
+ * @param {*} orcamentoBanco 
+ * @param {*} transaction 
+ */
 async function _deletarItens(orcamentoDTO, orcamentoBanco, transaction){
 
     let itensParaRemover = []; 
